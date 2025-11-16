@@ -60,10 +60,11 @@ body {
 /* Strength Bar */
 .strength-bar {
     width: 100%;
-    height: 10px;
+    height: 12px;
     background-color: #ddd;
     border-radius: 20px;
     margin: 15px 0;
+    overflow: hidden;
 }
 
 #bar {
@@ -71,37 +72,18 @@ body {
     width: 0%;
     background-color: red;
     border-radius: 20px;
-    transition: width 0.4s;
+    transition: width 0.5s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.5s;
 }
 
-/* Dark Mode */
-.dark {
-    background-color: #222;
-    color: white;
+/* Glow animations */
+.glow-weak {
+    box-shadow: 0 0 10px 3px red;
 }
 
-.dark .container {
-    background-color: #333;
-    color: white;
+.glow-medium {
+    box-shadow: 0 0 12px 4px orange;
 }
 
-#darkModeBtn {
-    padding: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-    border: none;
-    background: black;
-    color: white;
-    border-radius: 5px;
-}
-
-/* Mobile-friendly */
-@media (max-width: 500px) {
-    #password {
-        width: 70%;
-    }
-
-    #togglePassword {
-        width: 30%;
-    }
+.glow-strong {
+    box-shadow: 0 0 15px 6px limegreen;
 }
