@@ -114,3 +114,28 @@ function increaseScore(amount){
         themeSelector.appendChild(matrixOption);
     }
 }
+const gamePassword = document.getElementById("gamePassword");
+const checkPassword = document.getElementById("checkPassword");
+const gameFeedback = document.getElementById("gameFeedback");
+const gameResult = document.getElementById("gameResult");
+
+checkPassword.addEventListener("click", function() {
+    const value = gamePassword.value;
+    let score = 0;
+    let hints = [];
+
+    if (value.length >= 8) score++; else hints.push("Use at least 8 characters");
+    if (/[A-Z]/.test(value)) score++; else hints.push("Add an uppercase letter");
+    if (/[0-9]/.test(value)) score++; else hints.push("Add a number");
+    if (/[^A-Za-z0-9]/.test(value)) score++; else hints.push("Add a symbol (!@#$%)");
+
+    if (score === 4) {
+        gameResult.textContent = "✅ ACCESS GRANTED! Safe password!";
+        gameResult.style.color = "#00ff00";
+        gamePassword.value = "";
+    } else {
+        gameResult.textContent = "❌ Unsafe password. " + hints.join(", ");
+        gameResult.style.color = "#ff0000";
+    }
+});
+
