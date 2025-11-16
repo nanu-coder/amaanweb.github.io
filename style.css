@@ -1,1 +1,30 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 100px;
+}
+
+#password {
+    padding: 10px;
+    width: 250px;
+    font-size: 18px;
+}
+
+#strength {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.weak {
+    color: red;
+}
+
+.medium {
+    color: orange;
+}
+
+.strong {
+    color: green;
+}
 
