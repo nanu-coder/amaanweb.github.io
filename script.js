@@ -7,12 +7,20 @@ const themeSelector = document.getElementById("themeSelector");
 /* -------------------------------
    🚀 LOADING SCREEN CONTROLLER
 --------------------------------*/
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById("loading-screen");
+
+    // fade out after 1.2 seconds
     setTimeout(() => {
         loadingScreen.classList.add("hide");
-    }, 1000); // 1 second delay
+
+        // remove from layout after fade
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+        }, 900); // matches CSS fade speed
+    }, 1200); 
 });
+
 
 /* -------------------------------
    🔥 PASSWORD STRENGTH CHECKER
