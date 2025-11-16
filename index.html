@@ -17,48 +17,57 @@
         <h1>Password Strength Checker</h1>
 
         <!-- PASSWORD CHECKER -->
-        <div class="password-box">
-            <input type="password" id="password" placeholder="Type a password">
-            <button id="togglePassword">Show</button>
+        <div class="game-box">
+            <h2>🔒 Password Strength Checker</h2>
+            <div class="password-box">
+                <input type="password" id="password" placeholder="Type a password">
+                <button id="togglePassword">Show</button>
+            </div>
+            <div id="strength">Strength: </div>
+            <div class="strength-bar">
+                <div id="bar"></div>
+            </div>
+            <p id="tips">Tips: Add uppercase letters, numbers, and symbols to make it stronger!</p>
         </div>
-        <div id="strength">Strength: </div>
-        <div class="strength-bar">
-            <div id="bar"></div>
-        </div>
-        <p id="tips">Tips: Add uppercase letters, numbers, and symbols to make it stronger!</p>
-
-        <!-- URL SAFETY CHECKER -->
-        <h2>🌐 URL Safety Checker</h2>
-        <input type="text" id="urlInput" placeholder="Enter URL">
-        <button id="checkUrlBtn">Check URL</button>
-        <p id="urlResult"></p>
 
         <!-- PHISHING URL GAME -->
-        <h2>🕵️ Spot the Phishing URL</h2>
-        <p id="gameUrl"></p>
-        <button id="urlSafeBtn">Safe</button>
-        <button id="urlPhishingBtn">Phishing</button>
-        <p id="urlGameResult"></p>
+        <div class="game-box">
+            <h2>🕵️ Spot the Phishing URL</h2>
+            <p id="gameUrl"></p>
+            <div class="button-group">
+                <button id="urlSafeBtn">Safe</button>
+                <button id="urlPhishingBtn">Phishing</button>
+            </div>
+            <p id="urlGameResult"></p>
+        </div>
 
         <!-- GUESS SAFE PASSWORD GAME -->
-        <h2>🔒 Try to Guess a Safe Password</h2>
-        <p id="gamePasswordHint">Hint: Must have uppercase, numbers, and symbols</p>
-        <input type="text" id="passwordGuess" placeholder="Type your guess">
-        <button id="checkPasswordGuess">Check</button>
-        <p id="passwordGameResult"></p>
+        <div class="game-box">
+            <h2>🔒 Try to Guess a Safe Password</h2>
+            <p id="gamePasswordHint">Hint: Must have uppercase, numbers, and symbols</p>
+            <input type="text" id="passwordGuess" placeholder="Type your guess">
+            <button id="checkPasswordGuess">Check</button>
+            <p id="passwordGameResult"></p>
+        </div>
 
         <!-- ACHIEVEMENTS -->
-        <h2>🏆 Achievements</h2>
-        <div id="badges"></div>
+        <div class="game-box">
+            <h2>🏆 Achievements</h2>
+            <div id="badges"></div>
+        </div>
 
         <!-- THEME SELECTOR -->
-        <select id="themeSelector">
-            <option value="light">🌞 Light Theme</option>
-            <option value="dark">🌚 Dark Theme</option>
-            <option value="cyberpunk" selected>💡 Neon Cyberpunk</option>
-        </select>
+        <div class="game-box">
+            <h2>🎨 Theme Selector</h2>
+            <select id="themeSelector">
+                <option value="light">🌞 Light Theme</option>
+                <option value="dark">🌚 Dark Theme</option>
+                <option value="cyberpunk" selected>💡 Neon Cyberpunk</option>
+            </select>
+        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
