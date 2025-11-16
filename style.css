@@ -1,42 +1,18 @@
-/* ---------------- GENERAL STYLES ---------------- */
+/* -------------------------------
+   GENERAL BODY & THEME
+---------------------------------*/
 body {
-    font-family: Arial, sans-serif;
-    transition: 0.3s;
     margin: 0;
-    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: #0a0a0a;
+    color: #0ff;
 }
+
 .container {
-    max-width: 700px;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* ---------------- GAME BOXES ---------------- */
-.game-box {
-    background: rgba(0,0,0,0.85);
-    color: #fff;
+    max-width: 800px;
+    margin: 150px auto 50px auto; /* leave space for loading screen */
     padding: 20px;
-    border-radius: 10px;
-    border: 2px solid #0ff;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
-
-/* ---------------- INPUTS AND BUTTONS ---------------- */
-input, button, select {
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: none;
-}
-button, select {
-    cursor: pointer;
-    transition: 0.2s;
-}
-button:hover, select:hover {opacity: 0.8;}
 
 /* -------------------------------
    NEON CYBERPUNK LOADING SCREEN
@@ -108,89 +84,130 @@ button:hover, select:hover {opacity: 0.8;}
     100% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff; }
 }
 
-/* ---------------- PASSWORD STRENGTH ---------------- */
-.strength-bar {width:100%; height:15px; background:#333; border-radius:5px; margin:10px 0;}
-#bar {width:0%; height:100%; transition:0.3s;}
-.glow-weak {box-shadow:0 0 5px red;}
-.glow-medium {box-shadow:0 0 10px orange;}
-.glow-strong {box-shadow:0 0 15px limegreen;}
-.weak {color:red;} .medium {color:orange;} .strong {color:limegreen;}
+/* -------------------------------
+   GAME BOXES & UNIFORM STYLE
+---------------------------------*/
+.game-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #0ff;
+    box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
 
-/* ---------------- GAMES ---------------- */
-#gameUrl, #gamePasswordHint {font-family:'Courier New', monospace; padding:5px; background:#111; color:#0ff; border:1px solid #0ff; border-radius:5px;}
-.button-group {display:flex; gap:10px;}
+.game-box h2 {
+    margin-top: 0;
+    text-shadow: 0 0 5px #0ff;
+}
 
-/* ---------------- BADGES ---------------- */
+/* -------------------------------
+   PASSWORD CHECKER
+---------------------------------*/
+.password-box {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.password-box input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px 0 0 6px;
+    border: none;
+    outline: none;
+}
+
+.password-box button {
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    border: none;
+    cursor: pointer;
+    background: #0ff;
+    color: #000;
+    font-weight: bold;
+}
+
+#strength {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 12px;
+    background: #222;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#bar {
+    width: 0%;
+    height: 100%;
+    background: red;
+    border-radius: 6px;
+    transition: width 0.3s, background 0.3s;
+}
+
+/* -------------------------------
+   BUTTON GROUPS
+---------------------------------*/
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background: #0ff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #0ff;
+    transition: transform 0.2s;
+}
+
+.button-group button:hover {
+    transform: scale(1.05);
+}
+
+/* -------------------------------
+   INPUTS & BUTTONS
+---------------------------------*/
+input, button, select {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* -------------------------------
+   ACHIEVEMENTS / BADGES
+---------------------------------*/
+#badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .badge {
-    display:inline-block;
-    background:#0ff;
-    color:#000;
-    padding:5px 10px;
-    margin:5px;
-    border-radius:5px;
-    font-weight:bold;
-    box-shadow:0 0 10px #0ff;
-}
-
-/* ---------------- THEMES ---------------- */
-body.light {background:#fff; color:#000;}
-body.dark {background:#111; color:#eee;}
-body.cyberpunk {background:#0f0f1f; color:#f0f; text-shadow:0 0 5px #f0,0 0 10px #f0;}
-body.matrix {background:#000; color:#0f0; text-shadow:0 0 5px #0f0,0 0 10px #0f0;}
-/* ---------------- THEME GLOW EFFECTS ---------------- */
-
-/* Cyberpunk Neon Theme */
-body.cyberpunk .game-box {
-    border-color: #ff00ff;
-    box-shadow: 0 0 15px #ff00ff;
-}
-body.cyberpunk button {
-    background: #ff00ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #ff0;
     color: #000;
-    box-shadow: 0 0 10px #ff00ff;
-}
-body.cyberpunk button:hover {
-    box-shadow: 0 0 20px #ff00ff;
+    font-weight: bold;
 }
 
-/* Matrix Green Theme */
-body.matrix .game-box {
-    border-color: #0f0;
-    box-shadow: 0 0 15px #0f0;
-}
-body.matrix button {
-    background: #0f0;
+/* -------------------------------
+   THEME SELECTOR
+---------------------------------*/
+#themeSelector {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background: #0ff;
     color: #000;
-    box-shadow: 0 0 10px #0f0;
-}
-body.matrix button:hover {
-    box-shadow: 0 0 20px #0f0;
-}
-
-/* Dark Theme - subtle glow */
-body.dark .game-box {
-    border-color: #00bfff;
-    box-shadow: 0 0 10px #00bfff;
-}
-body.dark button {
-    background: #00bfff;
-    color: #000;
-    box-shadow: 0 0 8px #00bfff;
-}
-body.dark button:hover {
-    box-shadow: 0 0 15px #00bfff;
-}
-
-/* Light Theme - minimal glow */
-body.light .game-box {
-    border-color: #888;
-    box-shadow: 0 0 5px #888;
-}
-body.light button {
-    background: #888;
-    color: #fff;
-    box-shadow: 0 0 5px #888;
-}
-body.light button:hover {
-    box-shadow: 0 0 10px #888;
+    font-weight: bold;
+    cursor: pointer;
 }
