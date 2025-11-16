@@ -126,10 +126,10 @@ checkPasswordGuess.addEventListener("click", () => {
 // PHISHING URL GAME
 // -------------------------------
 const urlList = [
-    {url:"https://secure-bank.com", safe:true},
-    {url:"http://login-paypal.com", safe:false},
-    {url:"https://github.com", safe:true},
-    {url:"http://verify-account.com", safe:false}
+    {url:"https://secure-bank.com", safe:true, done:false},
+    {url:"http://login-paypal.com", safe:false, done:false},
+    {url:"https://github.com", safe:true, done:false},
+    {url:"http://verify-account.com", safe:false, done:false}
 ];
 
 let currentUrlIndex = 0;
@@ -140,20 +140,27 @@ function showUrl(){
 }
 
 function checkUrl(isSafe){
-    const correct = urlList[currentUrlIndex].safe === isSafe;
-    if(correct){
-        urlGameResult.textContent="✅ Correct!";
+    const current = urlList[currentUrlIndex];
+    if(current.safe === isSafe){
+        urlGameResult.textContent = "✅ Correct!";
         urlGameResult.style.color="#00ff00";
-        addBadge("URL Detective");
+        current.done = true; // mark as done
     } else {
-        urlGameResult.textContent="❌ Wrong!";
+        urlGameResult.textContent = "❌ Wrong!";
         urlGameResult.style.color="#ff0000";
     }
+
+    // Check if all URLs are done
+    if(urlList.every(u => u.done)){
+        addBadge("URL Detective");
+    }
+
+    // Move to next URL
     currentUrlIndex = (currentUrlIndex + 1) % urlList.length;
-    setTimeout(showUrl,800);
+    setTimeout(showUrl, 800);
 }
 
-urlSafeBtn.addEventListener("click",()=>checkUrl(true));
-urlPhishingBtn.addEventListener("click",()=>checkUrl(false));
+urlSafeBtn.addEventListener("click", ()=>checkUrl(true));
+urlPhishingBtn.addEventListener("click", ()=>checkUrl(false));
 
 showUrl();
