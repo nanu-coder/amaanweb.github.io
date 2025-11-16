@@ -5,6 +5,16 @@ const togglePassword = document.getElementById("togglePassword");
 const themeSelector = document.getElementById("themeSelector");
 
 /* -------------------------------
+   🚀 LOADING SCREEN CONTROLLER
+--------------------------------*/
+window.addEventListener("load", () => {
+    const loadingScreen = document.getElementById("loading-screen");
+    setTimeout(() => {
+        loadingScreen.classList.add("hide");
+    }, 1000); // 1 second delay
+});
+
+/* -------------------------------
    🔥 PASSWORD STRENGTH CHECKER
 --------------------------------*/
 password.addEventListener("input", function () {
