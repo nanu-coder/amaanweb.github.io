@@ -92,3 +92,19 @@ themeSelector.addEventListener("change", function () {
     }
     // "light" = no class needed
 });
+/* -------------------------------
+   🔥 FIREWALL TOGGLE
+--------------------------------*/
+const firewallToggle = document.getElementById("firewallToggle");
+const firewallStatus = document.getElementById("firewallStatus");
+
+firewallToggle.addEventListener("change", function() {
+    if (this.checked) {
+        firewallStatus.textContent = "Firewall is ON ✅";
+        firewallStatus.style.color = "#00ff00";
+    } else {
+        firewallStatus.textContent = "Firewall is OFF ❌";
+        firewallStatus.style.color = "#ff0000";
+    }
+});
+
