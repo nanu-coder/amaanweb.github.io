@@ -14,6 +14,9 @@ password.addEventListener("input", function () {
     if (value.match(/[A-Z]/)) score++;
     if (value.match(/[^A-Za-z0-9]/)) score++;
 
+    // Reset glow classes
+    bar.classList.remove("glow-weak", "glow-medium", "glow-strong");
+
     if (value.length === 0) {
         strength.textContent = "Strength: ";
         strength.className = "";
@@ -25,20 +28,24 @@ password.addEventListener("input", function () {
         strength.className = "weak";
         bar.style.width = "25%";
         bar.style.background = "red";
+        bar.classList.add("glow-weak");
     } 
     else if (score === 2 || score === 3) {
         strength.textContent = "Strength: MEDIUM";
         strength.className = "medium";
         bar.style.width = "60%";
         bar.style.background = "orange";
+        bar.classList.add("glow-medium");
     } 
     else {
         strength.textContent = "Strength: STRONG";
         strength.className = "strong";
         bar.style.width = "100%";
-        bar.style.background = "green";
+        bar.style.background = "limegreen";
+        bar.classList.add("glow-strong");
     }
 });
+
 
 // Show / Hide Password Button
 togglePassword.addEventListener("click", function () {
