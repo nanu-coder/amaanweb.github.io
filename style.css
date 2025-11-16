@@ -1,310 +1,69 @@
-/* ---------------------------- */
-/* 🌞 LIGHT THEME (Default) */
-/* ---------------------------- */
-
+/* ---------------- GENERAL STYLES ---------------- */
 body {
-    font-family: Arial;
-    background-color: #f4f4f4;
-    color: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif;
+    transition: 0.3s;
     margin: 0;
+    padding: 0;
 }
-
 .container {
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+input, button, select {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
 }
 
-/* Password box */
-.password-box {
-    display: flex;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-#password {
-    padding: 10px;
-    width: 80%;
-    font-size: 18px;
-    border: 2px solid #ccc;
-    border-radius: 5px 0 0 5px;
-}
-
-#togglePassword {
-    width: 20%;
-    border: none;
-    background: #888;
-    color: white;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
-}
-
-/* Strength text colors */
-.weak { color: red; }
-.medium { color: orange; }
-.strong { color: green; }
-
-/* Strength Bar Container */
-.strength-bar {
-    width: 100%;
-    height: 12px;
-    background-color: #ddd;
-    border-radius: 20px;
-    margin: 15px 0;
-    overflow: hidden;
-}
-
-/* Bar itself */
-#bar {
-    height: 100%;
-    width: 0%;
-    background-color: red;
-    border-radius: 20px;
-    transition: width 0.5s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.5s;
-}
-
-/* Glowing bar classes */
-.glow-weak {
-    box-shadow: 0 0 12px 5px red;
-}
-
-.glow-medium {
-    box-shadow: 0 0 15px 6px orange;
-}
-
-.glow-strong {
-    box-shadow: 0 0 20px 8px limegreen;
-}
-
-/* Theme selector dropdown */
-#themeSelector {
-    margin-top: 20px;
-    padding: 10px;
-    width: 60%;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* ---------------------------- */
-/* 🌚 DARK THEME */
-/* ---------------------------- */
-
-.dark {
-    background-color: #121212;
-    color: white;
-}
-
-.dark .container {
-    background-color: #1e1e1e;
-    box-shadow: 0 0 20px rgba(255,255,255,0.1);
-}
-
-.dark #password {
-    background-color: #222;
-    color: white;
-    border: 2px solid #444;
-}
-
-.dark #togglePassword {
-    background: #444;
-}
-
-/* ---------------------------- */
-/* 💡 CYBERPUNK NEON THEME */
-/* ---------------------------- */
-
-.cyberpunk {
-    background: #030014;
-    color: #00ffe7;
-    text-shadow: 0 0 8px #00ffe7;
-    font-family: "Orbitron", sans-serif;
-}
-
-.cyberpunk .container {
-    background: rgba(0, 0, 20, 0.9);
-    border: 2px solid #ff00ff;
-    box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffe7 inset;
-}
-
-.cyberpunk #password {
-    border: 2px solid #00ffe7;
-    background: black;
-    color: #00ffe7;
-    box-shadow: 0 0 10px #00ffe7;
-}
-
-.cyberpunk #togglePassword {
-    background: #ff00ff;
-    color: black;
-    font-weight: bold;
-    box-shadow: 0 0 12px #ff00ff;
-}
-
-.cyberpunk #tips {
-    color: #ff00aa;
-    text-shadow: 0 0 6px #ff00aa;
-}
-
-/* Cyberpunk glowing strength bar */
-.cyberpunk .glow-weak {
-    box-shadow: 0 0 20px 8px #ff0040;
-}
-
-.cyberpunk .glow-medium {
-    box-shadow: 0 0 25px 8px #ff9900;
-}
-
-.cyberpunk .glow-strong {
-    box-shadow: 0 0 30px 12px #00ffea;
-}
-
-/* ---------------------------- */
-/* 📱 Mobile Responsive */
-/* ---------------------------- */
-
-@media (max-width: 480px) {
-    #password {
-        width: 70%;
-    }
-    #togglePassword {
-        width: 30%;
-    }
-    #themeSelector {
-        width: 90%;
-    }
-}
-/* ---------------------------- */
-/* ⚡ CYBERPUNK LOADING SCREEN */
-/* ---------------------------- */
-
+/* ---------------- LOADING SCREEN ---------------- */
 #loading-screen {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #030014;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 1s ease-in-out;
+    top:0; left:0; width:100%; height:100%;
+    background:#000; color:#0ff;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    z-index:9999;
+    transition: opacity 0.5s;
 }
-
-/* Spinning neon ring */
+#loading-screen.hide {opacity:0; visibility:hidden;}
 .loader-ring {
-    width: 90px;
-    height: 90px;
-    border: 5px solid transparent;
-    border-top: 5px solid #00ffe7;
-    border-right: 5px solid #ff00ff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite, glow 1.5s ease-in-out infinite alternate;
+    width:50px; height:50px; border:5px solid #0ff;
+    border-top-color:transparent;
+    border-radius:50%;
+    animation: spin 1s linear infinite;
 }
+@keyframes spin {100%{transform:rotate(360deg);}}
+.loading-text {margin-top:10px;}
 
-/* Glowing loading text */
-.loading-text {
-    margin-top: 20px;
-    font-size: 20px;
-    color: #00ffe7;
-    text-shadow: 0 0 10px #00ffe7;
-    animation: flicker 1.2s infinite alternate;
-}
+/* ---------------- PASSWORD STRENGTH ---------------- */
+.strength-bar {width:100%; height:15px; background:#333; border-radius:5px; margin:10px 0;}
+#bar {width:0%; height:100%; transition:0.3s;}
+.glow-weak {box-shadow:0 0 5px red;}
+.glow-medium {box-shadow:0 0 10px orange;}
+.glow-strong {box-shadow:0 0 15px limegreen;}
+.weak {color:red;} .medium {color:orange;} .strong {color:limegreen;}
 
-/* Spin animation */
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+/* ---------------- GAMES ---------------- */
+#gameUrl, #gamePasswordHint {font-family:'Courier New', monospace; padding:5px; background:#111; color:#0ff; border:1px solid #0ff; border-radius:5px; margin-bottom:10px;}
+#urlSafeBtn, #urlPhishingBtn, #checkPasswordGuess {background:#0ff; color:#000; border:none; cursor:pointer; transition:0.2s;}
+#urlSafeBtn:hover, #urlPhishingBtn:hover, #checkPasswordGuess:hover {background:#0fa;}
+#urlGameResult, #passwordGameResult, #urlResult {font-weight:bold; margin-top:5px;}
 
-/* Glow pulsing */
-@keyframes glow {
-    from {
-        box-shadow: 0 0 10px #00ffe7;
-    }
-    to {
-        box-shadow: 0 0 25px #ff00ff;
-    }
-}
-
-/* Flickering cyberpunk text */
-@keyframes flicker {
-    0% { opacity: 1; }
-    40% { opacity: 0.5; }
-    80% { opacity: 1; }
-    90% { opacity: 0.3; }
-    100% { opacity: 1; }
-}
-
-/* Hide loading screen after fade */
-#loading-screen.hide {
-    opacity: 0;
-    pointer-events: none;
-}
-#gameUrl {
-    font-family: 'Courier New', monospace;
-    background: #111;
-    color: #0ff;
-    padding: 10px;
-    border: 1px solid #0ff;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-#urlSafeBtn, #urlPhishingBtn {
-    background: #0ff;
-    color: #000;
-    border: none;
-    padding: 8px 12px;
-    margin-right: 5px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-#urlSafeBtn:hover, #urlPhishingBtn:hover {
-    background: #0fa;
-}
-#urlGameResult {
-    margin-top: 10px;
-    font-weight: bold;
-}
+/* ---------------- BADGES ---------------- */
 .badge {
-    display: inline-block;
-    background: #0ff;
-    color: #000;
-    padding: 5px 10px;
-    margin: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #0ff;
-}
-/* ---------------- MATRIX GREEN THEME ---------------- */
-body.matrix {
-    background-color: #000; /* black background */
-    color: #0f0; /* bright green text */
-    font-family: 'Courier New', monospace;
+    display:inline-block;
+    background:#0ff;
+    color:#000;
+    padding:5px 10px;
+    margin:5px;
+    border-radius:5px;
+    font-weight:bold;
+    box-shadow:0 0 10px #0ff;
 }
 
-body.matrix h1, body.matrix h2 {
-    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
-}
-
-body.matrix .strength-bar #bar {
-    background-color: #0f0;
-    box-shadow: 0 0 10px #0f0;
-}
-
-body.matrix button, body.matrix select, body.matrix input {
-    background-color: #000;
-    color: #0f0;
-    border: 1px solid #0f0;
-    box-shadow: 0 0 5px #0f0;
-}
+/* ---------------- THEMES ---------------- */
+body.light {background:#fff; color:#000;}
+body.dark {background:#111; color:#eee;}
+body.cyberpunk {background:#0f0f1f; color:#f0f; text-shadow:0 0 5px #f0,0 0 10px #f0;}
+body.matrix {background:#000; color:#0f0; text-shadow:0 0 5px #0f0,0 0 10px #0f0;}
