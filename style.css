@@ -1,21 +1,50 @@
+/* Light mode (default) */
 body {
     font-family: Arial;
+    background-color: #f4f4f4;
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
     text-align: center;
-    margin-top: 100px;
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Password box */
+.password-box {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 #password {
     padding: 10px;
-    width: 250px;
+    width: 80%;
     font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 5px 0 0 5px;
 }
 
-#strength {
-    margin-top: 20px;
-    font-size: 22px;
-    font-weight: bold;
+#togglePassword {
+    width: 20%;
+    border: none;
+    background: #888;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
 }
 
+/* Strength text colors */
 .weak {
     color: red;
 }
@@ -28,3 +57,51 @@ body {
     color: green;
 }
 
+/* Strength Bar */
+.strength-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 20px;
+    margin: 15px 0;
+}
+
+#bar {
+    height: 100%;
+    width: 0%;
+    background-color: red;
+    border-radius: 20px;
+    transition: width 0.4s;
+}
+
+/* Dark Mode */
+.dark {
+    background-color: #222;
+    color: white;
+}
+
+.dark .container {
+    background-color: #333;
+    color: white;
+}
+
+#darkModeBtn {
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Mobile-friendly */
+@media (max-width: 500px) {
+    #password {
+        width: 70%;
+    }
+
+    #togglePassword {
+        width: 30%;
+    }
+}
