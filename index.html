@@ -6,15 +6,27 @@
 </head>
 <body>
 
-    <h1>Password Strength Checker</h1>
+    <div class="container">
+        <h1>Password Strength Checker</h1>
 
-    <input type="password" id="password" placeholder="Type a password">
+        <div class="password-box">
+            <input type="password" id="password" placeholder="Type a password">
+            <button id="togglePassword">Show</button>
+        </div>
 
-    <div id="strength">Strength: </div>
+        <div id="strength">Strength: </div>
 
-    <p id="tips">
-        Tips: Add uppercase letters, numbers, and symbols to make it stronger!
-    </p>
+        <!-- Strength Bar -->
+        <div class="strength-bar">
+            <div id="bar"></div>
+        </div>
+
+        <p id="tips">
+            Tips: Add uppercase letters, numbers, and symbols to make it stronger!
+        </p>
+
+        <button id="darkModeBtn">🌙 Dark Mode</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
