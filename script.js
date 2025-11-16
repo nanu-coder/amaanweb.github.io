@@ -40,8 +40,6 @@ password.addEventListener("input", function () {
     if (/[A-Z]/.test(value)) score++;
     if (/[^A-Za-z0-9]/.test(value)) score++;
 
-    bar.classList.remove("glow-weak", "glow-medium", "glow-strong");
-
     if (value.length === 0) {
         strength.textContent = "Strength: ";
         bar.style.width = "0%";
@@ -79,10 +77,7 @@ togglePassword.addEventListener("click", function () {
 // -------------------------------
 themeSelector.addEventListener("change", function () {
     document.body.classList.remove("light", "dark", "cyberpunk");
-
-    if (this.value === "dark") document.body.classList.add("dark");
-    else if (this.value === "cyberpunk") document.body.classList.add("cyberpunk");
-    else if (this.value === "light") document.body.classList.add("light");
+    document.body.classList.add(this.value);
 });
 
 // -------------------------------
@@ -149,4 +144,3 @@ function checkUrl(userChoice) {
 
 // Start first URL
 nextUrl();
-
