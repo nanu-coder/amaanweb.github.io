@@ -8,13 +8,25 @@ body {
     color: #0ff;
 }
 
+body.light {
+    background: #f0f0f0;
+    color: #000;
+}
+
+body.dark {
+    background: #111;
+    color: #fff;
+}
+
 .container {
     max-width: 800px;
-    margin: 150px auto 50px auto; /* leave space for loading screen */
+    margin: 150px auto 50px auto; 
     padding: 20px;
 }
 
-/* Loading Screen */
+/* -------------------------------
+   LOADING SCREEN
+---------------------------------*/
 #loading-screen {
     position: fixed;
     top: 0;
@@ -35,14 +47,12 @@ body {
     visibility: hidden;
 }
 
-/* Rings container */
 .loader-ring-container {
     position: relative;
     width: 120px;
     height: 120px;
 }
 
-/* Each rotating ring */
 .loader-ring {
     position: absolute;
     top: 50%;
@@ -50,33 +60,24 @@ body {
     width: 100%;
     height: 100%;
     border: 4px solid transparent;
-    border-top-color: #00ffea;  /* neon color 1 */
+    border-top-color: #00ffea; 
     border-radius: 50%;
     animation: spin 1.5s linear infinite;
     transform: translate(-50%, -50%);
 }
 
 .loader-ring.ring2 {
-    border-top-color: #ff00ff;  /* neon color 2 */
-    width: 90%;
-    height: 90%;
+    border-top-color: #ff00ff; 
+    width: 80%;
+    height: 80%;
     animation-duration: 2s;
 }
 
-.loader-ring.ring3 {
-    border-top-color: #ffff00;  /* neon color 3 */
-    width: 70%;
-    height: 70%;
-    animation-duration: 2.5s;
-}
-
-/* Animation */
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Loading text */
 .loading-text {
     color: #00ffea;
     font-family: 'Courier New', monospace;
@@ -86,7 +87,7 @@ body {
 }
 
 /* -------------------------------
-   GAME BOXES & UNIFORM STYLE
+   GAME BOXES
 ---------------------------------*/
 .game-box {
     background: rgba(0, 0, 0, 0.6);
@@ -212,3 +213,4 @@ input, button, select {
     font-weight: bold;
     cursor: pointer;
 }
+
