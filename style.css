@@ -14,9 +14,7 @@ body {
     padding: 20px;
 }
 
-/* -------------------------------
-   NEON CYBERPUNK LOADING SCREEN
----------------------------------*/
+/* Loading Screen */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -26,10 +24,10 @@ body {
     background: #0a0a0a;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    transition: opacity 0.5s ease, visibility 0.5s;
 }
 
 #loading-screen.hide {
@@ -37,51 +35,54 @@ body {
     visibility: hidden;
 }
 
-.neon-container {
+/* Rings container */
+.loader-ring-container {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 
-.neon-ring {
+/* Each rotating ring */
+.loader-ring {
     position: absolute;
-    border: 4px solid #00ffff;
-    border-radius: 50%;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
-    animation: spin 2s linear infinite;
-    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #0ff, 0 0 60px #0ff;
+    border: 4px solid transparent;
+    border-top-color: #00ffea;  /* neon color 1 */
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+    transform: translate(-50%, -50%);
 }
 
-.neon-ring.second {
-    border-color: #ff00ff;
-    animation-duration: 3s;
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #f0f, 0 0 60px #f0f;
+.loader-ring.ring2 {
+    border-top-color: #ff00ff;  /* neon color 2 */
+    width: 90%;
+    height: 90%;
+    animation-duration: 2s;
 }
 
-.neon-ring.third {
-    border-color: #00ff00;
-    animation-duration: 4s;
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #0f0, 0 0 60px #0f0;
+.loader-ring.ring3 {
+    border-top-color: #ffff00;  /* neon color 3 */
+    width: 70%;
+    height: 70%;
+    animation-duration: 2.5s;
 }
 
+/* Animation */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* Loading text */
 .loading-text {
-    color: #0ff;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
-    margin-top: 30px;
-    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
-    animation: pulse 1.5s infinite alternate;
-}
-
-@keyframes pulse {
-    0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff; }
-    100% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff; }
+    color: #00ffea;
+    font-family: 'Courier New', monospace;
+    margin-top: 20px;
+    font-size: 18px;
+    text-shadow: 0 0 10px #00ffea, 0 0 20px #ff00ff;
 }
 
 /* -------------------------------
