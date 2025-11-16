@@ -6,16 +6,37 @@ body {
     padding: 0;
 }
 .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ---------------- GAME BOXES ---------------- */
+.game-box {
+    background: rgba(0,0,0,0.85);
+    color: #fff;
     padding: 20px;
     border-radius: 10px;
+    border: 2px solid #0ff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+
+/* ---------------- INPUTS AND BUTTONS ---------------- */
 input, button, select {
     padding: 8px;
     margin: 5px 0;
     border-radius: 5px;
+    border: none;
 }
+button, select {
+    cursor: pointer;
+    transition: 0.2s;
+}
+button:hover, select:hover {opacity: 0.8;}
 
 /* ---------------- LOADING SCREEN ---------------- */
 #loading-screen {
@@ -45,10 +66,8 @@ input, button, select {
 .weak {color:red;} .medium {color:orange;} .strong {color:limegreen;}
 
 /* ---------------- GAMES ---------------- */
-#gameUrl, #gamePasswordHint {font-family:'Courier New', monospace; padding:5px; background:#111; color:#0ff; border:1px solid #0ff; border-radius:5px; margin-bottom:10px;}
-#urlSafeBtn, #urlPhishingBtn, #checkPasswordGuess {background:#0ff; color:#000; border:none; cursor:pointer; transition:0.2s;}
-#urlSafeBtn:hover, #urlPhishingBtn:hover, #checkPasswordGuess:hover {background:#0fa;}
-#urlGameResult, #passwordGameResult, #urlResult {font-weight:bold; margin-top:5px;}
+#gameUrl, #gamePasswordHint {font-family:'Courier New', monospace; padding:5px; background:#111; color:#0ff; border:1px solid #0ff; border-radius:5px;}
+.button-group {display:flex; gap:10px;}
 
 /* ---------------- BADGES ---------------- */
 .badge {
