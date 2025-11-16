@@ -8,71 +8,68 @@
 </head>
 <body class="cyberpunk">
 
-<!-- 🔥 NEON CYBERPUNK LOADING SCREEN -->
-<div id="loading-screen">
-    <div class="loader-ring-container">
-        <div class="loader-ring ring1"></div>
-        <div class="loader-ring ring2"></div>
-    </div>
-    <p class="loading-text">BOOTING SYSTEM...</p>
-</div>
-
-<!-- MAIN CONTAINER -->
-<div class="container">
-
-    <!-- PASSWORD CHECKER -->
-    <div class="game-box">
-        <h2>🔒 Password Strength Checker</h2>
-        <div class="password-box">
-            <input type="password" id="password" placeholder="Type a password">
-            <button id="togglePassword">Show</button>
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loader-ring-container">
+            <div class="loader-ring"></div>
+            <div class="loader-ring ring2"></div>
+            <div class="loader-ring ring3"></div>
         </div>
-        <div id="strength">Strength: </div>
-        <div class="strength-bar">
-            <div id="bar"></div>
+        <p class="loading-text">BOOTING SYSTEM...</p>
+    </div>
+
+    <div class="container">
+        <!-- PASSWORD STRENGTH CHECKER -->
+        <div class="game-box">
+            <h2>🔒 Password Strength Checker</h2>
+            <div class="password-box">
+                <input type="password" id="password" placeholder="Type a password">
+                <button id="togglePassword">Show</button>
+            </div>
+            <div id="strength">Strength: </div>
+            <div class="strength-bar">
+                <div id="bar"></div>
+            </div>
+            <p id="tips">Tips: Add uppercase letters, numbers, and symbols to make it stronger!</p>
         </div>
-        <p id="tips">Tips: Add uppercase letters, numbers, and symbols!</p>
-    </div>
 
-    <!-- PHISHING URL GAME -->
-    <div class="game-box">
-        <h2>🕵️ Spot the Phishing URL</h2>
-        <p id="gameUrl">Loading URL...</p>
-        <div class="button-group">
-            <button id="urlSafeBtn">Safe</button>
-            <button id="urlPhishingBtn">Phishing</button>
+        <!-- PHISHING URL GAME -->
+        <div class="game-box">
+            <h2>🕵️ Spot the Phishing URL</h2>
+            <p id="gameUrl"></p>
+            <div class="button-group">
+                <button id="urlSafeBtn">Safe</button>
+                <button id="urlPhishingBtn">Phishing</button>
+            </div>
+            <p id="urlGameResult"></p>
         </div>
-        <p id="urlGameResult"></p>
+
+        <!-- GUESS SAFE PASSWORD GAME -->
+        <div class="game-box">
+            <h2>🔒 Try to Guess a Safe Password</h2>
+            <p id="gamePasswordHint">Hint: Must have uppercase, numbers, symbols, and at least 8 characters</p>
+            <input type="text" id="gamePassword" placeholder="Type your guess">
+            <button id="checkPassword">Check</button>
+            <p id="gameResult"></p>
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+        <div class="game-box">
+            <h2>🏆 Achievements</h2>
+            <div id="badges"></div>
+        </div>
+
+        <!-- THEME SELECTOR -->
+        <div class="game-box">
+            <h2>🎨 Theme Selector</h2>
+            <select id="themeSelector">
+                <option value="light">🌞 Light Theme</option>
+                <option value="dark">🌚 Dark Theme</option>
+                <option value="cyberpunk" selected>💡 Neon Cyberpunk</option>
+            </select>
+        </div>
     </div>
 
-    <!-- GUESS SAFE PASSWORD GAME -->
-    <div class="game-box">
-        <h2>🔒 Try to Guess a Safe Password</h2>
-        <p id="gamePasswordHint">Hint: Must have uppercase, numbers, and symbols</p>
-        <input type="text" id="passwordGuess" placeholder="Type your guess">
-        <button id="checkPasswordGuess">Check</button>
-        <p id="passwordGameResult"></p>
-    </div>
-
-    <!-- ACHIEVEMENTS -->
-    <div class="game-box">
-        <h2>🏆 Achievements</h2>
-        <div id="badges"></div>
-    </div>
-
-    <!-- THEME SELECTOR -->
-    <div class="game-box">
-        <h2>🎨 Theme Selector</h2>
-        <select id="themeSelector">
-            <option value="light">🌞 Light Theme</option>
-            <option value="dark">🌚 Dark Theme</option>
-            <option value="cyberpunk" selected>💡 Neon Cyberpunk</option>
-        </select>
-    </div>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
