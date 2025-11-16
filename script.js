@@ -2,9 +2,11 @@ const password = document.getElementById("password");
 const strength = document.getElementById("strength");
 const bar = document.getElementById("bar");
 const togglePassword = document.getElementById("togglePassword");
-const darkModeBtn = document.getElementById("darkModeBtn");
+const themeSelector = document.getElementById("themeSelector");
 
-// Password Strength Checker
+/* -------------------------------
+   🔥 PASSWORD STRENGTH CHECKER
+--------------------------------*/
 password.addEventListener("input", function () {
     const value = password.value;
     let score = 0;
@@ -14,7 +16,6 @@ password.addEventListener("input", function () {
     if (value.match(/[A-Z]/)) score++;
     if (value.match(/[^A-Za-z0-9]/)) score++;
 
-    // Reset glow classes
     bar.classList.remove("glow-weak", "glow-medium", "glow-strong");
 
     if (value.length === 0) {
@@ -46,8 +47,9 @@ password.addEventListener("input", function () {
     }
 });
 
-
-// Show / Hide Password Button
+/* -------------------------------
+   👁 SHOW / HIDE PASSWORD
+--------------------------------*/
 togglePassword.addEventListener("click", function () {
     if (password.type === "password") {
         password.type = "text";
@@ -58,7 +60,17 @@ togglePassword.addEventListener("click", function () {
     }
 });
 
-// Dark Mode Button
-darkModeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark");
+/* -------------------------------
+   🎨 THEME SELECTOR
+--------------------------------*/
+themeSelector.addEventListener("change", function () {
+    document.body.classList.remove("dark", "cyberpunk");
+
+    if (this.value === "dark") {
+        document.body.classList.add("dark");
+    } 
+    else if (this.value === "cyberpunk") {
+        document.body.classList.add("cyberpunk");
+    }
+    // "light" = no class needed
 });
