@@ -5,10 +5,6 @@ const bar = document.getElementById("bar");
 const togglePassword = document.getElementById("togglePassword");
 const themeSelector = document.getElementById("themeSelector");
 
-const urlInput = document.getElementById("urlInput");
-const checkUrlBtn = document.getElementById("checkUrlBtn");
-const urlResult = document.getElementById("urlResult");
-
 const gameUrl = document.getElementById("gameUrl");
 const urlSafeBtn = document.getElementById("urlSafeBtn");
 const urlPhishingBtn = document.getElementById("urlPhishingBtn");
@@ -70,19 +66,6 @@ themeSelector.addEventListener("change", function(){
     if(this.value==="dark") document.body.classList.add("dark");
     else if(this.value==="cyberpunk") document.body.classList.add("cyberpunk");
     else if(this.value==="matrix") document.body.classList.add("matrix");
-});
-
-/* ---------------- URL SAFETY CHECKER ---------------- */
-checkUrlBtn.addEventListener("click", () => {
-    const url = urlInput.value;
-    if(url.includes("phishing") || url.includes("hack")) {
-        urlResult.textContent="❌ Unsafe URL!";
-        urlResult.style.color="red";
-        awardBadge("URL Safety Badge");
-    } else {
-        urlResult.textContent="✅ Safe URL!";
-        urlResult.style.color="lime";
-    }
 });
 
 /* ---------------- PHISHING URL GAME ---------------- */
