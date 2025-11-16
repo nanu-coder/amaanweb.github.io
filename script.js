@@ -92,4 +92,39 @@ themeSelector.addEventListener("change", function () {
     }
     // "light" = no class needed
 });
+const urls = [
+    { text: "https://paypal.com", phishing: false },
+    { text: "https://secure-paypal.com/login", phishing: true },
+    { text: "https://github.com", phishing: false },
+    { text: "https://github-security-alert.com", phishing: true }
+];
+
+let currentUrlIndex = 0;
+const gameUrl = document.getElementById("gameUrl");
+const urlSafeBtn = document.getElementById("urlSafeBtn");
+const urlPhishingBtn = document.getElementById("urlPhishingBtn");
+const urlGameResult = document.getElementById("urlGameResult");
+
+function showUrl() {
+    gameUrl.textContent = urls[currentUrlIndex].text;
+    urlGameResult.textContent = "";
+}
+
+urlSafeBtn.addEventListener("click", () => checkUrl(false));
+urlPhishingBtn.addEventListener("click", () => checkUrl(true));
+
+function checkUrl(answer) {
+    const url = urls[currentUrlIndex];
+    if (answer === url.phishing) {
+        urlGameResult.textContent = "✅ Correct!";
+        urlGameResult.style.color = "lime";
+    } else {
+        urlGameResult.textContent = "❌ Wrong!";
+        urlGameResult.style.color = "red";
+    }
+    currentUrlIndex = (currentUrlIndex + 1) % urls.length;
+    setTimeout(showUrl, 1000);
+}
+
+showUrl();
 
