@@ -8,10 +8,9 @@ const togglePassword = document.getElementById("togglePassword");
 const themeSelector = document.getElementById("themeSelector");
 
 // Hacker simulation game elements
-const gamePassword = document.getElementById("gamePassword");
-const checkPassword = document.getElementById("checkPassword");
-const gameFeedback = document.getElementById("gameFeedback");
-const gameResult = document.getElementById("gameResult");
+const gamePassword = document.getElementById("passwordGuess");
+const checkPassword = document.getElementById("checkPasswordGuess");
+const gameResult = document.getElementById("passwordGameResult");
 
 // -------------------------------
 // Loading Screen
