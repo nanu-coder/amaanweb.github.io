@@ -107,3 +107,19 @@ checkPasswordGuessBtn.addEventListener("click", () => {
         passwordGameResult.style.color = "red";
     }
 });
+const badgesContainer = document.getElementById("badges");
+
+function awardBadge(name) {
+    const badge = document.createElement("div");
+    badge.className = "badge";
+    badge.textContent = name;
+    badgesContainer.appendChild(badge);
+}
+
+// Example: award a badge if password is strong
+password.addEventListener("input", () => {
+    if(password.value.length > 6 && /[A-Z]/.test(password.value) && /[0-9]/.test(password.value) && /[^A-Za-z0-9]/.test(password.value)){
+        awardBadge("Strong Password Badge");
+    }
+});
+
