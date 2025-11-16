@@ -213,3 +213,27 @@ input, button, select {
     color:#000;
     font-weight:bold;
 }
+/* -------------------------------
+   WELCOME BOX
+---------------------------------*/
+.welcome-box {
+    background: rgba(0,0,0,0.7);
+    border: 2px solid #0ff;
+    box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.welcome-box h1 {
+    margin-top: 0;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #ff00ff;
+}
+
+.welcome-box p {
+    color: #0ff;
+    font-size: 16px;
+    text-shadow: 0 0 5px #0ff;
+}
