@@ -12,6 +12,12 @@ const gamePassword = document.getElementById("passwordGuess");
 const checkPassword = document.getElementById("checkPasswordGuess");
 const gameResult = document.getElementById("passwordGameResult");
 
+// Phishing URL game elements
+const gameUrl = document.getElementById("gameUrl");
+const urlSafeBtn = document.getElementById("urlSafeBtn");
+const urlPhishingBtn = document.getElementById("urlPhishingBtn");
+const urlGameResult = document.getElementById("urlGameResult");
+
 // -------------------------------
 // Loading Screen
 // -------------------------------
@@ -19,7 +25,7 @@ window.addEventListener("load", () => {
     const loadingScreen = document.getElementById("loading-screen");
     setTimeout(() => {
         loadingScreen.classList.add("hide");
-    }, 1000); // 1 second delay
+    }, 1000);
 });
 
 // -------------------------------
@@ -38,30 +44,20 @@ password.addEventListener("input", function () {
 
     if (value.length === 0) {
         strength.textContent = "Strength: ";
-        strength.className = "";
         bar.style.width = "0%";
         bar.style.background = "red";
-    } 
-    else if (score <= 1) {
+    } else if (score <= 1) {
         strength.textContent = "Strength: WEAK";
-        strength.className = "weak";
         bar.style.width = "25%";
         bar.style.background = "red";
-        bar.classList.add("glow-weak");
-    } 
-    else if (score === 2 || score === 3) {
+    } else if (score === 2 || score === 3) {
         strength.textContent = "Strength: MEDIUM";
-        strength.className = "medium";
         bar.style.width = "60%";
         bar.style.background = "orange";
-        bar.classList.add("glow-medium");
-    } 
-    else {
+    } else {
         strength.textContent = "Strength: STRONG";
-        strength.className = "strong";
         bar.style.width = "100%";
         bar.style.background = "limegreen";
-        bar.classList.add("glow-strong");
     }
 });
 
@@ -82,40 +78,75 @@ togglePassword.addEventListener("click", function () {
 // Theme Selector
 // -------------------------------
 themeSelector.addEventListener("change", function () {
-    document.body.classList.remove("dark", "cyberpunk");
+    document.body.classList.remove("light", "dark", "cyberpunk");
 
-    if (this.value === "dark") {
-        document.body.classList.add("dark");
-    } 
-    else if (this.value === "cyberpunk") {
-        document.body.classList.add("cyberpunk");
-    }
-    // light theme = no class
+    if (this.value === "dark") document.body.classList.add("dark");
+    else if (this.value === "cyberpunk") document.body.classList.add("cyberpunk");
+    else if (this.value === "light") document.body.classList.add("light");
 });
 
 // -------------------------------
 // Hacker Simulation Game: Guess a Safe Password
 // -------------------------------
-if (checkPassword) {
-    checkPassword.addEventListener("click", function() {
-        const value = gamePassword.value;
-        let score = 0;
-        let hints = [];
+checkPassword.addEventListener("click", function() {
+    const value = gamePassword.value;
+    let score = 0;
+    let hints = [];
 
-        // Rules
-        if (value.length >= 8) score++; else hints.push("Use at least 8 characters");
-        if (/[A-Z]/.test(value)) score++; else hints.push("Add an uppercase letter");
-        if (/[0-9]/.test(value)) score++; else hints.push("Add a number");
-        if (/[^A-Za-z0-9]/.test(value)) score++; else hints.push("Add a symbol (!@#$%)");
+    if (value.length >= 8) score++; else hints.push("Use at least 8 characters");
+    if (/[A-Z]/.test(value)) score++; else hints.push("Add an uppercase letter");
+    if (/[0-9]/.test(value)) score++; else hints.push("Add a number");
+    if (/[^A-Za-z0-9]/.test(value)) score++; else hints.push("Add a symbol (!@#$%)");
 
-        // Check if safe
-        if (score === 4) {
-            gameResult.textContent = "✅ ACCESS GRANTED! Safe password!";
-            gameResult.style.color = "#00ff00";
-            gamePassword.value = "";
-        } else {
-            gameResult.textContent = "❌ Unsafe password. " + hints.join(", ");
-            gameResult.style.color = "#ff0000";
-        }
-    });
+    if (score === 4) {
+        gameResult.textContent = "✅ ACCESS GRANTED! Safe password!";
+        gameResult.style.color = "#00ff00";
+        gamePassword.value = "";
+
+        // Add badge
+        const badgesDiv = document.getElementById("badges");
+        const badge = document.createElement("div");
+        badge.className = "badge";
+        badge.textContent = "Safe Password Master!";
+        badgesDiv.appendChild(badge);
+    } else {
+        gameResult.textContent = "❌ Unsafe password. " + hints.join(", ");
+        gameResult.style.color = "#ff0000";
+    }
+});
+
+// -------------------------------
+// Phishing URL Game
+// -------------------------------
+const urls = [
+    { url: "http://secure-bank.com", safe: true },
+    { url: "http://free-money-now.com", safe: false },
+    { url: "http://your-bank-secure.com", safe: false },
+    { url: "https://github.com", safe: true }
+];
+
+let currentUrl = null;
+
+function nextUrl() {
+    currentUrl = urls[Math.floor(Math.random() * urls.length)];
+    gameUrl.textContent = currentUrl.url;
+    urlGameResult.textContent = "";
 }
+
+urlSafeBtn.addEventListener("click", () => checkUrl(true));
+urlPhishingBtn.addEventListener("click", () => checkUrl(false));
+
+function checkUrl(userChoice) {
+    if (currentUrl.safe === userChoice) {
+        urlGameResult.textContent = "✅ Correct!";
+        urlGameResult.style.color = "#00ff00";
+    } else {
+        urlGameResult.textContent = "❌ Wrong!";
+        urlGameResult.style.color = "#ff0000";
+    }
+    nextUrl();
+}
+
+// Start first URL
+nextUrl();
+
