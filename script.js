@@ -91,6 +91,19 @@ themeSelector.addEventListener("change", function () {
         document.body.classList.add("cyberpunk");
     }
     // "light" = no class needed
+   themeSelector.addEventListener("change", function () {
+    document.body.classList.remove("dark", "cyberpunk", "matrix");
+
+    if (this.value === "dark") {
+        document.body.classList.add("dark");
+    } 
+    else if (this.value === "cyberpunk") {
+        document.body.classList.add("cyberpunk");
+    }
+    else if (this.value === "matrix") {
+        document.body.classList.add("matrix");
+    }
+    // "light" = no class needed
 });
 /*password finder game*/
 const correctPassword = "Safe123!"; // example
