@@ -251,3 +251,28 @@ body {
     opacity: 0;
     pointer-events: none;
 }
+#gameUrl {
+    font-family: 'Courier New', monospace;
+    background: #111;
+    color: #0ff;
+    padding: 10px;
+    border: 1px solid #0ff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+#urlSafeBtn, #urlPhishingBtn {
+    background: #0ff;
+    color: #000;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#urlSafeBtn:hover, #urlPhishingBtn:hover {
+    background: #0fa;
+}
+#urlGameResult {
+    margin-top: 10px;
+    font-weight: bold;
+}
