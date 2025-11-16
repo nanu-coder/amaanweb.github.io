@@ -1,153 +1,132 @@
+/* ---------------- SELECT ELEMENTS ---------------- */
 const password = document.getElementById("password");
 const strength = document.getElementById("strength");
 const bar = document.getElementById("bar");
 const togglePassword = document.getElementById("togglePassword");
 const themeSelector = document.getElementById("themeSelector");
 
-/* -------------------------------
-   🚀 LOADING SCREEN CONTROLLER
---------------------------------*/
-window.addEventListener("DOMContentLoaded", () => {
+const urlInput = document.getElementById("urlInput");
+const checkUrlBtn = document.getElementById("checkUrlBtn");
+const urlResult = document.getElementById("urlResult");
+
+const gameUrl = document.getElementById("gameUrl");
+const urlSafeBtn = document.getElementById("urlSafeBtn");
+const urlPhishingBtn = document.getElementById("urlPhishingBtn");
+const urlGameResult = document.getElementById("urlGameResult");
+
+const passwordGuessInput = document.getElementById("passwordGuess");
+const checkPasswordGuessBtn = document.getElementById("checkPasswordGuess");
+const passwordGameResult = document.getElementById("passwordGameResult");
+
+const badgesContainer = document.getElementById("badges");
+
+/* ---------------- LOADING SCREEN ---------------- */
+window.addEventListener("load", () => {
     const loadingScreen = document.getElementById("loading-screen");
-
-    // fade out after 1.2 seconds
-    setTimeout(() => {
-        loadingScreen.classList.add("hide");
-
-        // remove from layout after fade
-        setTimeout(() => {
-            loadingScreen.style.display = "none";
-        }, 900); // matches CSS fade speed
-    }, 1200); 
+    setTimeout(() => loadingScreen.classList.add("hide"), 1000);
 });
 
-
-/* -------------------------------
-   🔥 PASSWORD STRENGTH CHECKER
---------------------------------*/
+/* ---------------- PASSWORD STRENGTH ---------------- */
 password.addEventListener("input", function () {
     const value = password.value;
     let score = 0;
-
     if (value.length > 6) score++;
     if (value.match(/[0-9]/)) score++;
     if (value.match(/[A-Z]/)) score++;
     if (value.match(/[^A-Za-z0-9]/)) score++;
 
-    bar.classList.remove("glow-weak", "glow-medium", "glow-strong");
+    bar.classList.remove("glow-weak","glow-medium","glow-strong");
 
-    if (value.length === 0) {
-        strength.textContent = "Strength: ";
-        strength.className = "";
-        bar.style.width = "0%";
-        bar.style.background = "red";
-    } 
-    else if (score <= 1) {
-        strength.textContent = "Strength: WEAK";
-        strength.className = "weak";
-        bar.style.width = "25%";
-        bar.style.background = "red";
-        bar.classList.add("glow-weak");
-    } 
-    else if (score === 2 || score === 3) {
-        strength.textContent = "Strength: MEDIUM";
-        strength.className = "medium";
-        bar.style.width = "60%";
-        bar.style.background = "orange";
-        bar.classList.add("glow-medium");
-    } 
-    else {
-        strength.textContent = "Strength: STRONG";
-        strength.className = "strong";
-        bar.style.width = "100%";
-        bar.style.background = "limegreen";
-        bar.classList.add("glow-strong");
+    if(value.length===0){
+        strength.textContent="Strength: ";
+        bar.style.width="0%";
     }
+    else if(score<=1){
+        strength.textContent="Strength: WEAK"; strength.className="weak";
+        bar.style.width="25%"; bar.style.background="red"; bar.classList.add("glow-weak");
+    }
+    else if(score===2||score===3){
+        strength.textContent="Strength: MEDIUM"; strength.className="medium";
+        bar.style.width="60%"; bar.style.background="orange"; bar.classList.add("glow-medium");
+    }
+    else{
+        strength.textContent="Strength: STRONG"; strength.className="strong";
+        bar.style.width="100%"; bar.style.background="limegreen"; bar.classList.add("glow-strong");
+    }
+
+    // Award badge for strong password
+    if(score>=4) awardBadge("Strong Password Badge");
 });
 
-/* -------------------------------
-   👁 SHOW / HIDE PASSWORD
---------------------------------*/
+/* ---------------- SHOW/HIDE PASSWORD ---------------- */
 togglePassword.addEventListener("click", function () {
-    if (password.type === "password") {
-        password.type = "text";
-        togglePassword.textContent = "Hide";
+    if(password.type==="password"){password.type="text"; togglePassword.textContent="Hide";}
+    else{password.type="password"; togglePassword.textContent="Show";}
+});
+
+/* ---------------- THEME SELECTOR ---------------- */
+themeSelector.addEventListener("change", function(){
+    document.body.classList.remove("dark","cyberpunk","matrix");
+    if(this.value==="dark") document.body.classList.add("dark");
+    else if(this.value==="cyberpunk") document.body.classList.add("cyberpunk");
+    else if(this.value==="matrix") document.body.classList.add("matrix");
+});
+
+/* ---------------- URL SAFETY CHECKER ---------------- */
+checkUrlBtn.addEventListener("click", () => {
+    const url = urlInput.value;
+    if(url.includes("phishing") || url.includes("hack")) {
+        urlResult.textContent="❌ Unsafe URL!";
+        urlResult.style.color="red";
+        awardBadge("URL Safety Badge");
     } else {
-        password.type = "password";
-        togglePassword.textContent = "Show";
+        urlResult.textContent="✅ Safe URL!";
+        urlResult.style.color="lime";
     }
 });
 
-/* -------------------------------
-   🎨 THEME SELECTOR
---------------------------------*/
-themeSelector.addEventListener("change", function () {
-    document.body.classList.remove("dark", "cyberpunk");
-
-    if (this.value === "dark") {
-        document.body.classList.add("dark");
-    } 
-    else if (this.value === "cyberpunk") {
-        document.body.classList.add("cyberpunk");
-    }
-    // "light" = no class needed
-   themeSelector.addEventListener("change", function () {
-    document.body.classList.remove("dark", "cyberpunk", "matrix");
-
-    if (this.value === "dark") {
-        document.body.classList.add("dark");
-    } 
-    else if (this.value === "cyberpunk") {
-        document.body.classList.add("cyberpunk");
-    }
-    else if (this.value === "matrix") {
-        document.body.classList.add("matrix");
-    }
-    // "light" = no class needed
-});
-/*password finder game*/
-const correctPassword = "Safe123!"; // example
-const passwordGuessInput = document.getElementById("passwordGuess");
-const checkPasswordGuessBtn = document.getElementById("checkPasswordGuess");
-const passwordGameResult = document.getElementById("passwordGameResult");
-
-checkPasswordGuessBtn.addEventListener("click", () => {
-    if(passwordGuessInput.value === correctPassword){
-        passwordGameResult.textContent = "✅ You guessed it!";
-        passwordGameResult.style.color = "lime";
-    } else {
-        passwordGameResult.textContent = "❌ Try again!";
-        passwordGameResult.style.color = "red";
-    }
-});
-const badgesContainer = document.getElementById("badges");
-
-function awardBadge(name) {
-    const badge = document.createElement("div");
-    badge.className = "badge";
-    badge.textContent = name;
-    badgesContainer.appendChild(badge);
+/* ---------------- PHISHING URL GAME ---------------- */
+const urlsGame = [
+    { text:"https://paypal.com", phishing:false },
+    { text:"https://secure-paypal.com/login", phishing:true },
+    { text:"https://github.com", phishing:false },
+    { text:"https://github-security-alert.com", phishing:true }
+];
+let currentUrlIndex = 0;
+function showUrl(){ gameUrl.textContent = urlsGame[currentUrlIndex].text; urlGameResult.textContent=""; }
+urlSafeBtn.addEventListener("click", ()=>checkUrlAnswer(false));
+urlPhishingBtn.addEventListener("click", ()=>checkUrlAnswer(true));
+function checkUrlAnswer(answer){
+    const urlObj = urlsGame[currentUrlIndex];
+    if(answer===urlObj.phishing){ urlGameResult.textContent="✅ Correct!"; urlGameResult.style.color="lime"; awardBadge("Phishing Game Badge"); }
+    else{ urlGameResult.textContent="❌ Wrong!"; urlGameResult.style.color="red"; }
+    currentUrlIndex = (currentUrlIndex+1)%urlsGame.length;
+    setTimeout(showUrl,1000);
 }
+showUrl();
 
-// Example: award a badge if password is strong
-password.addEventListener("input", () => {
-    if(password.value.length > 6 && /[A-Z]/.test(password.value) && /[0-9]/.test(password.value) && /[^A-Za-z0-9]/.test(password.value)){
-        awardBadge("Strong Password Badge");
-    }
+/* ---------------- GUESS SAFE PASSWORD GAME ---------------- */
+const correctPassword = "Safe123!";
+checkPasswordGuessBtn.addEventListener("click",()=>{
+    if(passwordGuessInput.value===correctPassword){ passwordGameResult.textContent="✅ You guessed it!"; passwordGameResult.style.color="lime"; awardBadge("Password Game Badge"); }
+    else{ passwordGameResult.textContent="❌ Try again!"; passwordGameResult.style.color="red"; }
 });
-let digitalSafetyScore = 0;
 
+/* ---------------- ACHIEVEMENTS / BADGES ---------------- */
+let digitalSafetyScore = 0;
+function awardBadge(name){
+    if([...badgesContainer.childNodes].some(b=>b.textContent===name)) return;
+    const badge = document.createElement("div");
+    badge.className="badge"; badge.textContent=name;
+    badgesContainer.appendChild(badge);
+    increaseScore(1);
+}
 function increaseScore(amount){
     digitalSafetyScore += amount;
-
-    // unlock "Matrix Green Theme" if score >= 5
-    if(digitalSafetyScore >= 5 && !document.getElementById("matrixOption")) {
+    if(digitalSafetyScore>=5 && !document.getElementById("matrixOption")){
         const matrixOption = document.createElement("option");
-        matrixOption.id = "matrixOption";
-        matrixOption.value = "matrix";
-        matrixOption.textContent = "💚 Matrix Green (Unlocked!)";
+        matrixOption.id="matrixOption"; matrixOption.value="matrix";
+        matrixOption.textContent="💚 Matrix Green (Unlocked!)";
         themeSelector.appendChild(matrixOption);
     }
 }
-
-
