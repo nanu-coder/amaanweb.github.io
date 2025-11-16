@@ -62,10 +62,11 @@ togglePassword.addEventListener("click", function () {
 
 /* ---------------- THEME SELECTOR ---------------- */
 themeSelector.addEventListener("change", function(){
-    document.body.classList.remove("dark","cyberpunk","matrix");
+    document.body.classList.remove("dark","cyberpunk","matrix","light");
     if(this.value==="dark") document.body.classList.add("dark");
     else if(this.value==="cyberpunk") document.body.classList.add("cyberpunk");
     else if(this.value==="matrix") document.body.classList.add("matrix");
+    else if(this.value==="light") document.body.classList.add("light");
 });
 
 /* ---------------- PHISHING URL GAME ---------------- */
