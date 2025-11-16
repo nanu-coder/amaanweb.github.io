@@ -1,23 +1,27 @@
 /* -------------------------------
-   GENERAL BODY & THEME
+   BODY & THEMES
 ---------------------------------*/
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
     background: #0a0a0a;
     color: #0ff;
+    transition: background 0.5s, color 0.5s;
 }
 
+/* Light Theme */
 body.light {
-    background: #f0f0f0;
-    color: #000;
+    background: #f5f5f5;
+    color: #222;
 }
 
+/* Dark Theme */
 body.dark {
     background: #111;
-    color: #fff;
+    color: #0ff;
 }
 
+/* Container Grid */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -32,15 +36,13 @@ body.dark {
 ---------------------------------*/
 #loading-screen {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: #0a0a0a;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     z-index: 9999;
     transition: opacity 0.5s ease, visibility 0.5s;
 }
@@ -52,27 +54,23 @@ body.dark {
 
 .loader-ring-container {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 120px; height: 120px;
 }
 
 .loader-ring {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    border: 4px solid transparent;
-    border-top-color: #00ffea; 
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    border: 5px solid transparent;
+    border-top-color: #00ffea;
     border-radius: 50%;
     animation: spin 1.5s linear infinite;
     transform: translate(-50%, -50%);
 }
 
 .loader-ring.ring2 {
-    border-top-color: #ff00ff; 
-    width: 80%;
-    height: 80%;
+    border-top-color: #ff00ff;
+    width: 80%; height: 80%;
     animation-duration: 2s;
 }
 
@@ -93,7 +91,7 @@ body.dark {
    GAME BOXES
 ---------------------------------*/
 .game-box {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0,0,0,0.6);
     border: 2px solid #0ff;
     box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset;
     border-radius: 12px;
@@ -101,17 +99,16 @@ body.dark {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    min-height: 250px;
 }
 
+/* Headings */
 .game-box h2 {
     margin-top: 0;
     text-shadow: 0 0 5px #0ff;
-    text-align: center;
 }
 
-/* -------------------------------
-   PASSWORD CHECKER
----------------------------------*/
+/* Password box */
 .password-box {
     display: flex;
     margin-bottom: 10px;
@@ -135,11 +132,7 @@ body.dark {
     font-weight: bold;
 }
 
-#strength {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
+/* Strength bar */
 .strength-bar {
     width: 100%;
     height: 12px;
@@ -157,9 +150,7 @@ body.dark {
     transition: width 0.3s, background 0.3s;
 }
 
-/* -------------------------------
-   BUTTON GROUPS
----------------------------------*/
+/* Button group */
 .button-group {
     display: flex;
     gap: 10px;
@@ -183,21 +174,16 @@ body.dark {
     transform: scale(1.05);
 }
 
-/* -------------------------------
-   INPUTS & BUTTONS
----------------------------------*/
+/* Inputs, selects */
 input, button, select {
     font-family: 'Orbitron', sans-serif;
 }
 
-/* -------------------------------
-   ACHIEVEMENTS / BADGES
----------------------------------*/
+/* Achievements / badges */
 #badges {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
 }
 
 .badge {
@@ -206,43 +192,4 @@ input, button, select {
     background: #ff0;
     color: #000;
     font-weight: bold;
-}
-
-/* -------------------------------
-   THEME SELECTOR
----------------------------------*/
-#themeSelector {
-    padding: 8px;
-    border-radius: 6px;
-    border: none;
-    background: #0ff;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-}
-/* -------------------------------
-   CONTAINER GRID FIX
----------------------------------*/
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* -------------------------------
-   GAME BOXES FIX
----------------------------------*/
-.game-box {
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid #0ff;
-    box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset;
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* let content define height */
-    min-height: 250px; /* optional: makes all boxes at least this tall */
 }
