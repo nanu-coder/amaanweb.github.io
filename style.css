@@ -221,7 +221,7 @@ input, button, select {
     cursor: pointer;
 }
 /* -------------------------------
-   CONTAINER GRID
+   CONTAINER GRID FIX
 ---------------------------------*/
 .container {
     display: grid;
@@ -230,11 +230,10 @@ input, button, select {
     padding: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: stretch; /* Make all boxes equal height */
 }
 
 /* -------------------------------
-   GAME BOXES
+   GAME BOXES FIX
 ---------------------------------*/
 .game-box {
     background: rgba(0, 0, 0, 0.6);
@@ -244,7 +243,6 @@ input, button, select {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Stretch content to fill box */
-    height: 100%; /* Full height of grid cell */
+    justify-content: flex-start; /* let content define height */
+    min-height: 250px; /* optional: makes all boxes at least this tall */
 }
-
