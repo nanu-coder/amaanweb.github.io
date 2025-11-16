@@ -122,4 +122,19 @@ password.addEventListener("input", () => {
         awardBadge("Strong Password Badge");
     }
 });
+let digitalSafetyScore = 0;
+
+function increaseScore(amount){
+    digitalSafetyScore += amount;
+
+    // unlock "Matrix Green Theme" if score >= 5
+    if(digitalSafetyScore >= 5 && !document.getElementById("matrixOption")) {
+        const matrixOption = document.createElement("option");
+        matrixOption.id = "matrixOption";
+        matrixOption.value = "matrix";
+        matrixOption.textContent = "💚 Matrix Green (Unlocked!)";
+        themeSelector.appendChild(matrixOption);
+    }
+}
+
 
