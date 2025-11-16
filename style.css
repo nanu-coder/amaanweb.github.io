@@ -286,3 +286,25 @@ body {
     font-weight: bold;
     box-shadow: 0 0 10px #0ff;
 }
+/* ---------------- MATRIX GREEN THEME ---------------- */
+body.matrix {
+    background-color: #000; /* black background */
+    color: #0f0; /* bright green text */
+    font-family: 'Courier New', monospace;
+}
+
+body.matrix h1, body.matrix h2 {
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+}
+
+body.matrix .strength-bar #bar {
+    background-color: #0f0;
+    box-shadow: 0 0 10px #0f0;
+}
+
+body.matrix button, body.matrix select, body.matrix input {
+    background-color: #000;
+    color: #0f0;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 5px #0f0;
+}
