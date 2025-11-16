@@ -86,3 +86,60 @@ body.light {background:#fff; color:#000;}
 body.dark {background:#111; color:#eee;}
 body.cyberpunk {background:#0f0f1f; color:#f0f; text-shadow:0 0 5px #f0,0 0 10px #f0;}
 body.matrix {background:#000; color:#0f0; text-shadow:0 0 5px #0f0,0 0 10px #0f0;}
+/* ---------------- THEME GLOW EFFECTS ---------------- */
+
+/* Cyberpunk Neon Theme */
+body.cyberpunk .game-box {
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+body.cyberpunk button {
+    background: #ff00ff;
+    color: #000;
+    box-shadow: 0 0 10px #ff00ff;
+}
+body.cyberpunk button:hover {
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+/* Matrix Green Theme */
+body.matrix .game-box {
+    border-color: #0f0;
+    box-shadow: 0 0 15px #0f0;
+}
+body.matrix button {
+    background: #0f0;
+    color: #000;
+    box-shadow: 0 0 10px #0f0;
+}
+body.matrix button:hover {
+    box-shadow: 0 0 20px #0f0;
+}
+
+/* Dark Theme - subtle glow */
+body.dark .game-box {
+    border-color: #00bfff;
+    box-shadow: 0 0 10px #00bfff;
+}
+body.dark button {
+    background: #00bfff;
+    color: #000;
+    box-shadow: 0 0 8px #00bfff;
+}
+body.dark button:hover {
+    box-shadow: 0 0 15px #00bfff;
+}
+
+/* Light Theme - minimal glow */
+body.light .game-box {
+    border-color: #888;
+    box-shadow: 0 0 5px #888;
+}
+body.light button {
+    background: #888;
+    color: #fff;
+    box-shadow: 0 0 5px #888;
+}
+body.light button:hover {
+    box-shadow: 0 0 10px #888;
+}
