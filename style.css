@@ -220,4 +220,31 @@ input, button, select {
     font-weight: bold;
     cursor: pointer;
 }
+/* -------------------------------
+   CONTAINER GRID
+---------------------------------*/
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch; /* Make all boxes equal height */
+}
+
+/* -------------------------------
+   GAME BOXES
+---------------------------------*/
+.game-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #0ff;
+    box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Stretch content to fill box */
+    height: 100%; /* Full height of grid cell */
+}
 
