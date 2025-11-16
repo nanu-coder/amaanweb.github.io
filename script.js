@@ -7,20 +7,16 @@ const bar = document.getElementById("bar");
 const togglePassword = document.getElementById("togglePassword");
 const themeSelector = document.getElementById("themeSelector");
 
-// Hacker simulation game elements
-const gamePassword = document.getElementById("gamePassword");
-const checkPassword = document.getElementById("checkPassword");
-const gameResult = document.getElementById("gameResult");
+const gamePasswordGuess = document.getElementById("passwordGuess");
+const checkPasswordGuess = document.getElementById("checkPasswordGuess");
+const passwordGameResult = document.getElementById("passwordGameResult");
 
-// Phishing URL game
 const gameUrl = document.getElementById("gameUrl");
 const urlSafeBtn = document.getElementById("urlSafeBtn");
 const urlPhishingBtn = document.getElementById("urlPhishingBtn");
 const urlGameResult = document.getElementById("urlGameResult");
 
-// Achievements
 const badgesContainer = document.getElementById("badges");
-let achievements = [];
 
 // -------------------------------
 // LOADING SCREEN
@@ -33,9 +29,9 @@ window.addEventListener("load", () => {
 });
 
 // -------------------------------
-// PASSWORD STRENGTH CHECKER
+// PASSWORD STRENGTH
 // -------------------------------
-password.addEventListener("input", function () {
+password.addEventListener("input", () => {
     const value = password.value;
     let score = 0;
 
@@ -44,21 +40,24 @@ password.addEventListener("input", function () {
     if (/[A-Z]/.test(value)) score++;
     if (/[^A-Za-z0-9]/.test(value)) score++;
 
-    bar.classList.remove("glow-weak","glow-medium","glow-strong");
+    bar.classList.remove("glow-weak", "glow-medium", "glow-strong");
 
     if (value.length === 0) {
         strength.textContent = "Strength: ";
         bar.style.width = "0%";
         bar.style.background = "red";
-    } else if (score <= 1) {
+    } 
+    else if (score <= 1) {
         strength.textContent = "Strength: WEAK";
         bar.style.width = "25%";
         bar.style.background = "red";
-    } else if (score <=3) {
+    } 
+    else if (score <= 3) {
         strength.textContent = "Strength: MEDIUM";
         bar.style.width = "60%";
         bar.style.background = "orange";
-    } else {
+    } 
+    else {
         strength.textContent = "Strength: STRONG";
         bar.style.width = "100%";
         bar.style.background = "limegreen";
@@ -68,7 +67,7 @@ password.addEventListener("input", function () {
 // -------------------------------
 // SHOW/HIDE PASSWORD
 // -------------------------------
-togglePassword.addEventListener("click", function() {
+togglePassword.addEventListener("click", () => {
     if (password.type === "password") {
         password.type = "text";
         togglePassword.textContent = "Hide";
@@ -81,83 +80,80 @@ togglePassword.addEventListener("click", function() {
 // -------------------------------
 // THEME SELECTOR
 // -------------------------------
-themeSelector.addEventListener("change", function() {
+themeSelector.addEventListener("change", function () {
     document.body.classList.remove("light","dark","cyberpunk");
-    if(this.value === "dark") document.body.classList.add("dark");
-    else if(this.value === "cyberpunk") document.body.classList.add("cyberpunk");
+    document.body.classList.add(this.value);
 });
 
 // -------------------------------
-// GUESS SAFE PASSWORD GAME
+// ACHIEVEMENTS HELPER
 // -------------------------------
-checkPassword.addEventListener("click", function() {
-    const value = gamePassword.value;
-    let score = 0;
-    let hints = [];
-
-    if(value.length >= 8) score++; else hints.push("Use at least 8 characters");
-    if(/[A-Z]/.test(value)) score++; else hints.push("Add an uppercase letter");
-    if(/[0-9]/.test(value)) score++; else hints.push("Add a number");
-    if(/[^A-Za-z0-9]/.test(value)) score++; else hints.push("Add a symbol (!@#$%)");
-
-    if(score === 4) {
-        gameResult.textContent = "✅ ACCESS GRANTED! Safe password!";
-        gameResult.style.color = "#00ff00";
-        gamePassword.value = "";
-        addAchievement("Strong Password Guesser");
-    } else {
-        gameResult.textContent = "❌ Unsafe password. " + hints.join(", ");
-        gameResult.style.color = "#ff0000";
-    }
-});
-
-// -------------------------------
-// PHISHING URL GAME
-// -------------------------------
-const urls = [
-    {url: "https://secure-bank.com/login", safe:true},
-    {url: "http://bit.ly/fakebank", safe:false},
-    {url: "https://accounts.google.com", safe:true},
-    {url: "http://phishingsite.com", safe:false},
-];
-
-let currentUrlIndex = 0;
-
-function showUrl() {
-    const u = urls[currentUrlIndex];
-    gameUrl.textContent = u.url;
-    urlGameResult.textContent = "";
-}
-
-urlSafeBtn.addEventListener("click", () => checkUrl(true));
-urlPhishingBtn.addEventListener("click", () => checkUrl(false));
-
-function checkUrl(choice) {
-    const u = urls[currentUrlIndex];
-    if(choice === u.safe) {
-        urlGameResult.textContent = "✅ Correct!";
-        urlGameResult.style.color = "#00ff00";
-        addAchievement("Phishing Spotter");
-    } else {
-        urlGameResult.textContent = "❌ Wrong!";
-        urlGameResult.style.color = "#ff0000";
-    }
-    currentUrlIndex = (currentUrlIndex +1) % urls.length;
-    setTimeout(showUrl, 1000);
-}
-
-// -------------------------------
-// ACHIEVEMENTS
-// -------------------------------
-function addAchievement(name) {
-    if(!achievements.includes(name)) {
-        achievements.push(name);
+function addBadge(name){
+    if(!document.getElementById(`badge-${name}`)){
         const badge = document.createElement("div");
+        badge.id = `badge-${name}`;
         badge.className = "badge";
         badge.textContent = name;
         badgesContainer.appendChild(badge);
     }
 }
 
-// Initialize first URL
+// -------------------------------
+// GUESS SAFE PASSWORD GAME
+// -------------------------------
+checkPasswordGuess.addEventListener("click", () => {
+    const value = gamePasswordGuess.value;
+    let score = 0;
+    let hints = [];
+
+    if(value.length >= 8) score++; else hints.push("8+ chars");
+    if(/[A-Z]/.test(value)) score++; else hints.push("Uppercase");
+    if(/[0-9]/.test(value)) score++; else hints.push("Number");
+    if(/[^A-Za-z0-9]/.test(value)) score++; else hints.push("Symbol");
+
+    if(score===4){
+        passwordGameResult.textContent="✅ ACCESS GRANTED!";
+        passwordGameResult.style.color="#00ff00";
+        gamePasswordGuess.value="";
+        addBadge("Safe Password");
+    } else {
+        passwordGameResult.textContent="❌ Unsafe. Add: " + hints.join(", ");
+        passwordGameResult.style.color="#ff0000";
+    }
+});
+
+// -------------------------------
+// PHISHING URL GAME
+// -------------------------------
+const urlList = [
+    {url:"https://secure-bank.com", safe:true},
+    {url:"http://login-paypal.com", safe:false},
+    {url:"https://github.com", safe:true},
+    {url:"http://verify-account.com", safe:false}
+];
+
+let currentUrlIndex = 0;
+
+function showUrl(){
+    gameUrl.textContent = urlList[currentUrlIndex].url;
+    urlGameResult.textContent = "";
+}
+
+function checkUrl(isSafe){
+    const correct = urlList[currentUrlIndex].safe === isSafe;
+    if(correct){
+        urlGameResult.textContent="✅ Correct!";
+        urlGameResult.style.color="#00ff00";
+        addBadge("URL Detective");
+    } else {
+        urlGameResult.textContent="❌ Wrong!";
+        urlGameResult.style.color="#ff0000";
+    }
+    currentUrlIndex = (currentUrlIndex + 1) % urlList.length;
+    setTimeout(showUrl,800);
+}
+
+urlSafeBtn.addEventListener("click",()=>checkUrl(true));
+urlPhishingBtn.addEventListener("click",()=>checkUrl(false));
+
 showUrl();
